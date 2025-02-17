@@ -1,12 +1,36 @@
-<link
-	rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
-/>
-<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<script lang="ts">
+	import { projects } from '$lib/data';
+	// import 'chocolat/dist/css/chocolat.css';
+	// import Chocolat from 'chocolat';
 
-<head>
-	<script src="https://kit.fontawesome.com/348a376d3d.js" crossorigin="anonymous"></script>
-</head>
+	let selectedProject = $state(projects[0]);
+	let showModal = $state(false);
+	let selectedImage = $state('');
+
+	function openModal(image: string) {
+		selectedImage = image;
+		showModal = true;
+	}
+
+	function closeModal() {
+		showModal = false;
+		selectedImage = '';
+	}
+	// import { onMount } from 'svelte';
+	// onMount(() => {
+	// 	if (document.readyState === 'complete') {
+	// 		if (typeof window !== 'undefined') {
+	// 			Chocolat(document.querySelectorAll('.chocolat-image'));
+	// 		}
+	// 	}
+	// 	// Chocolat(document.querySelectorAll('.chocolat-image'));
+	// });
+	// // document.onreadystatechange = function () {
+	// // 	if (document.readyState === 'complete') {
+	// // 		Chocolat(document.querySelectorAll('.chocolat-image'));
+	// // 	}
+	// // };
+</script>
 
 <div class="bg-main text-white">
 	<nav class="container mx-auto px-6 py-6">
@@ -24,7 +48,7 @@
 	<section id="home" class="container mx-auto px-6 py-20">
 		<div class="text-center">
 			<h1 class="mb-6 text-5xl font-bold">Christopher Kelvin Pintoro Kwan</h1>
-			<p class="mb-8 text-xl text-gray-400">A passionate Front-End Developer.</p>
+			<p class="mb-8 text-xl text-gray-400">Front-End Developer Enthusiast.</p>
 			<div class="flex justify-center space-x-4">
 				<a
 					href="#contact"
@@ -44,18 +68,12 @@
 		<div class="container mx-auto px-6">
 			<h2 class="mb-8 text-3xl font-bold">About Me</h2>
 			<p class="text-lg text-white">
-				A fresh graduate in Informatics Engineering from the University of Surabaya with a GPA of
-				3.795, I have expertise in Android application development, website development, and machine
-				learning implementation. With strong programming skills and fluency in English, I am ready
+				An Universitas Surabaya's Informatics Engineering fresh gradute with GPA of 3.795, I have
+				expertise in Android application development, website development, and machine learning
+				implementation. With strong programming skills and fluency in speaking English, I am ready
 				to adapt and take on new challenges to continue growing in the IT industry. Experienced in
 				teamwork through various projects, I am committed to providing innovative solutions and
-				contributing effectively in a professional environment.A fresh graduate in Informatics
-				Engineering from the University of Surabaya with a GPA of 3.795, I have expertise in Android
-				application development, website development, and machine learning implementation. With
-				strong programming skills and fluency in English, I am ready to adapt and take on new
-				challenges to continue growing in the IT industry. Experienced in teamwork through various
-				projects, I am committed to providing innovative solutions and contributing effectively in a
-				professional environment.
+				contributing effectively in a professional environment.
 			</p>
 		</div>
 	</section>
@@ -63,30 +81,57 @@
 	<section id="projects" class="container mx-auto px-6 py-20">
 		<h2 class="mb-8 text-3xl font-bold">My Projects</h2>
 		<div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-			<div
-				class="rounded-lg bg-section1 p-6 transition-all duration-300 hover:-translate-y-2 hover:transform"
-			>
-				<img src="" alt="Project 1" class="mb-4 h-48 w-full rounded-lg object-cover" />
-				<h3 class="mb-2 text-xl font-bold">Project One</h3>
-				<p class="text-sm text-gray-400">A responsive web application for e-commerce.</p>
-			</div>
+			{#each projects as project, i}
+				<!-- <button onclick={()=>selectedProject=projects[i]}> -->
 
-			<div
-				class="rounded-lg bg-section1 p-6 transition-all duration-300 hover:-translate-y-2 hover:transform"
-			>
-				<img src="" alt="Project 2" class="mb-4 h-48 w-full rounded-lg object-cover" />
-				<h3 class="mb-2 text-xl font-bold">Project Two</h3>
-				<p class="text-sm text-gray-400">A real-time chat application using WebSocket.</p>
-			</div>
-
-			<div
-				class="rounded-lg bg-section1 p-6 transition-all duration-300 hover:-translate-y-2 hover:transform"
-			>
-				<img src="" alt="Project 3" class="mb-4 h-48 w-full rounded-lg object-cover" />
-				<h3 class="mb-2 text-xl font-bold">Project Three</h3>
-				<p class="text-sm text-gray-400">An AI-powered recommendation system.</p>
-			</div>
+				<a
+					href="#detailProject"
+					class="rounded-lg bg-section1 p-6 transition-all duration-300 hover:-translate-y-2 hover:transform hover:cursor-pointer"
+					on:click={() => (selectedProject = projects[i])}
+				>
+					<img
+						src={`images/${project.thumbnail}`}
+						alt="Project {i + 1}"
+						class="mb-4 h-48 w-full rounded-lg object-scale-down"
+					/>
+					<h3 class="mb-2 text-xl font-bold">{project.title}</h3>
+					<p class="text-sm text-gray-400">{@html project.description}</p>
+				</a>
+				<!-- </button>	 -->
+			{/each}
 		</div>
+		<section id="detailProject">
+			<div class="my-8 text-center">
+				<h2 class="mb-8 text-3xl font-bold">{selectedProject.title}</h2>
+				<p class="text-xl text-white">
+					{@html selectedProject.description}
+				</p>
+				<div class="my-8 text-start">
+					<h2 class="mb-4 text-xl font-bold">Frameworks & Languages</h2>
+					<ul class="list-item">
+						{#each selectedProject.language as lang}
+							<li>&bull; {lang}</li>
+						{/each}
+					</ul>
+				</div>
+
+				<div class="my-8 text-start">
+					<h2 class="mb-4 text-xl font-bold">Documentations</h2>
+					<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+						{#each selectedProject.image as img, i}
+							<!-- <a href={`images/${img}`} class="chocolat-image"> -->
+							<img
+								src={`images/${img}`}
+								alt={`${selectedProject.title}+${i + 1}`}
+								class="mb-4 h-48 w-full rounded-lg object-contain hover:cursor-pointer"
+								on:click={() => openModal(`images/${img}`)}
+							/>
+							<!-- </a> -->
+						{/each}
+					</div>
+				</div>
+			</div>
+		</section>
 	</section>
 
 	<section id="skills" class="bg-section1 py-20">
@@ -181,7 +226,8 @@
 					</div>
 					<h3 class="font-bold">Java</h3>
 				</div>
-			</div><h2 class="my-8 text-xl font-bold">Frameworks</h2>
+			</div>
+			<h2 class="my-8 text-xl font-bold">Frameworks</h2>
 			<div class="grid grid-cols-2 gap-8 md:grid-cols-4">
 				<div
 					class="rounded-lg bg-main p-4 transition-all duration-300 hover:-translate-y-2 hover:transform"
@@ -278,3 +324,25 @@
 		</div>
 	</footer>
 </div>
+{#if showModal}
+	<div
+		class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-65"
+		on:click={closeModal}
+	>
+		<div
+			class="relative flex h-full max-h-full w-full max-w-full flex-col justify-center rounded-lg bg-transparent p-5 text-center"
+		>
+			<button class="absolute right-3 top-0 m-2 text-lg text-white" on:click={closeModal}>X</button>
+			<img src={selectedImage} alt="Selected Image" class="max-h-full max-w-full object-contain" />
+		</div>
+	</div>
+{/if}
+<link
+	rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+/>
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+
+<head>
+	<script src="https://kit.fontawesome.com/348a376d3d.js" crossorigin="anonymous"></script>
+</head>
