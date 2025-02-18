@@ -323,7 +323,7 @@
 			<a href="https://mail.google.com/mail/?view=cm&fs=1&to=ckpk7171@gmail.com">
 				<div
 					class="group rounded-lg bg-section1 p-4 transition-colors hover:bg-section2"
-					style="text-overflow: ellipsis;"
+					style="overflow: hidden;text-overflow: ellipsis;"
 				>
 					<div class="mb-4 flex h-8 w-8 items-center justify-center rounded-full bg-red-950">
 						<i class="fa fa-envelope"></i>
