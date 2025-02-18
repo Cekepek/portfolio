@@ -4,7 +4,7 @@ export const projects = [
         language: ['Flutter-Dart', 'Golang'],
         thumbnail: 'ld/thumbnail.png',
         description:
-            'Lectio Divina is an app for christian to read and contemplate verses from bible. This project is created using flutte for the front-end and golang for the back-end.',
+            'Lectio Divina is an app for christians to read and contemplate verses from bible. This project is created using flutter for the front-end and golang for the back-end.',
         image: ['ld/1.jpeg', 'ld/2.jpeg', 'ld/3.jpeg', 'ld/4.jpeg', 'ld/5.jpeg']
     },
     {

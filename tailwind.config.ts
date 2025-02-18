@@ -8,10 +8,10 @@ export default {
 	theme: {
 		extend: {
 			colors:{
-				main:"#1E201E",
-				section1:"#3C3D37",
-				section2:"#697565",
-				accent:"#ECDFCC"
+				main:"#FFF0D1",
+				section1:"#795757",
+				section2:"#664343",
+				accent:"#3B3030"
 			}
 		}
 	},
