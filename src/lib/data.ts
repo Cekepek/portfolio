@@ -28,7 +28,7 @@ export const projects = [
         language: ['.NET-C#'],
         thumbnail: 'pos/11.png',
         description:
-            'This project is a desktop application for a small rice processing factory in Bondowoso,East Java. The application is used to manage the sales, and inventory. The project is created for desktop application using .NET framework with local database.',
+            'This project is a desktop application for a rice processing factory in Bondowoso,East Java. The application is used to manage the sales, and inventory. The project is created for desktop application using .NET framework with local database.',
         image: [
             'pos/11.png',
             'pos/1.png',
@@ -44,12 +44,12 @@ export const projects = [
         ]
     },
     {
-        title: 'Ubaya Kuliner',
-        language: ['Kotlin', 'PHP'],
-        thumbnail: 'ubayakuliner/1.png',
+        title: 'Komcad Dislambair',
+        language: ['Flutter-Dart', 'Golang'],
+        thumbnail: 'komcad/komcad.png',
         description:
-            'Ubaya Kuliner is an android application that can help people to find the best culinary place around the University of Surabaya. In this application user can read the description of the restaurant and also book a reservation. This project was created for my android course final project.',
-        image: ['ubayakuliner/1.png', 'ubayakuliner/2.png', 'ubayakuliner/3.png', 'ubayakuliner/4.png','ubayakuliner/5.png','ubayakuliner/6.png']
+            'Komcad Dislambair is a mobile application for diver to register and manage their diving activities. In this application users can join diving events and also taking classes for certification. This application is requested by the Indonesian Navy.The application is created using flutter for the front-end and golang for the back-end.',
+        image: ['komcad/komcad.png', 'komcad/komcad 2.jpg', 'komcad/komcad 3.jpg', 'komcad/komcad 4.jpg',  'komcad/komcad 6.png', 'komcad/komcad 7.png', 'komcad/komcad 8.png', 'komcad/komcad 9.png', ]
     },
     {
         title: 'Daily Meme Digest',

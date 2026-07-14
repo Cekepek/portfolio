@@ -68,7 +68,7 @@
 	<section id="home" class="container mx-auto px-6 py-20">
 		<div class="text-center">
 			<h1 class="mb-6 text-5xl font-bold text-section2">Christopher Kelvin Pintoro Kwan</h1>
-			<p class="mb-8 text-xl text-accent">Front-End Developer Enthusiast.</p>
+			<p class="mb-8 text-xl text-accent">An Enthusiastic Full-Stack Developer.</p>
 			<div class="flex justify-center space-x-4">
 				<a
 					href="#contact"
@@ -88,12 +88,14 @@
 		<div class="container mx-auto px-6">
 			<h2 class="mb-8 text-3xl font-bold text-main">About Me</h2>
 			<p class="text-justify text-lg text-main" style="text-indent: 30px;">
-				An Universitas Surabaya Informatics Engineering's fresh gradute with GPA of 3.795, I have
-				expertise in Android application development, website development, and machine learning
-				implementation. With strong programming skills and fluency in speaking English, I am ready
-				to adapt and take on new challenges to continue growing in the IT industry. Experienced in
-				teamwork through various projects, I am committed to providing innovative solutions and
-				contributing effectively in a professional environment.
+				Fullstack Developer with 2+ years of experience in building apps. I’ve been creating apps
+				for various client, either its web or mobile application. I’ve used to building a fintech
+				application, but i also did websites for company profile, and creating apps for communities.
+				I have expertise in Android application development, website development, machine learning
+				implementation, and backend development. With strong programming skills and fluency in
+				speaking English, I am ready to adapt and take on new challenges to continue growing in the
+				IT industry. Experienced in teamwork through various projects, I am committed to providing
+				innovative solutions and contributing effectively in a professional environment.
 			</p>
 		</div>
 	</section>
