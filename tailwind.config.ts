@@ -7,11 +7,15 @@ export default {
 
 	theme: {
 		extend: {
-			colors:{
-				main:"#FFF0D1",
-				section1:"#795757",
-				section2:"#664343",
-				accent:"#3B3030"
+			colors: {
+				main: "#FFF0D1",
+				section1: "#795757",
+				section2: "#664343",
+				accent: "#3B3030"
+			},
+			fontFamily: {
+				display1: ['Montserrat', 'sans-serif'],
+				display2: ['Google Sans', 'sans-serif']
 			}
 		}
 	},

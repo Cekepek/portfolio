@@ -49,15 +49,31 @@ export const projects = [
         thumbnail: 'komcad/komcad.png',
         description:
             'Komcad Dislambair is a mobile application for diver to register and manage their diving activities. In this application users can join diving events and also taking classes for certification. This application is requested by the Indonesian Navy.The application is created using flutter for the front-end and golang for the back-end.',
-        image: ['komcad/komcad.png', 'komcad/komcad 2.jpg', 'komcad/komcad 3.jpg', 'komcad/komcad 4.jpg',  'komcad/komcad 6.png', 'komcad/komcad 7.png', 'komcad/komcad 8.png', 'komcad/komcad 9.png', ]
+        image: ['komcad/komcad.png', 'komcad/komcad 2.jpg', 'komcad/komcad 3.jpg', 'komcad/komcad 4.jpg', 'komcad/komcad 6.png', 'komcad/komcad 7.png', 'komcad/komcad 8.png', 'komcad/komcad 9.png',]
+    },
+    // {
+    //     title: 'Daily Meme Digest',
+    //     language: ['Kotlin', 'Flutter-dart'],
+    //     thumbnail: 'dailymemedigest/1.png',
+    //     description:
+    //         "Daily Meme Digest is an android application that can help people to read memes and make their own memes. This was my android course's mid-term project. The application originally made using kotlin, but it also re-created using flutter.",
+    //     image: ['dailymemedigest/1.png']
+    // },
+    {
+        title: 'Accounting and Stock Management Software for PT.SHS',
+        language: ['Svelte', 'Python', 'PostgreSQL'],
+        thumbnail: 'PT SHS Accounting System/AS1.png',
+        description:
+            "A web-based accounting and inventory management system for a lpg company in Surabaya, East Java. It adapt multi-tenant architecture as the company has multiple branches, and needed individual software for each branches, but also need a centralize control by the base company. The system is created using svelte for the front-end and python for the back-end.",
+        image: ['PT SHS Accounting System/AS1.png', 'PT SHS Accounting System/AS2.png', 'PT SHS Accounting System/AS3.png', 'PT SHS Accounting System/AS4.png']
     },
     {
-        title: 'Daily Meme Digest',
-        language: ['Kotlin', 'Flutter-dart'],
-        thumbnail: 'dailymemedigest/1.png',
+        title: 'Exchange Rate Web Information and Admin Control for PT.AJV ',
+        language: ['Svelte', 'Python', 'PostgreSQL'],
+        thumbnail: 'kurs/kurs2.png',
         description:
-            "Daily Meme Digest is an android application that can help people to read memes and make their own memes. This was my android course's mid-term project. The application originally made using kotlin, but it also re-created using flutter.",
-        image: ['dailymemedigest/1.png']
+            '<a href="https://kurs.ajv.co.id" class="text-blue-500 underline">kurs.ajv.co.id</a> is a web-based project for a currency exchange company in Surabaya, East Java. This website can show and update the currency exchange rate, and also an admin control to update the currency exchange rate. The admin panel has information of major banks exchange rate. The price can be manually determined but also can be automatically choosed by the system using major banks exchange rate as a reference. The system is created using svelte for the front-end and python for the back-end. ',
+        image: ['kurs/kurs1.png', 'kurs/kurs2.png',]
     }
 ]
 
