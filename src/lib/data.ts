@@ -5,7 +5,8 @@ export const projects = [
         thumbnail: 'ld/thumbnail.png',
         description:
             'Lectio Divina is an app for christians to read and contemplate verses from bible. This project is created using flutter for the front-end and golang for the back-end.',
-        image: ['ld/1.jpeg', 'ld/2.jpeg', 'ld/3.jpeg', 'ld/4.jpeg', 'ld/5.jpeg']
+        image: ['ld/1.jpeg', 'ld/2.jpeg', 'ld/3.jpeg', 'ld/4.jpeg', 'ld/5.jpeg'],
+        category: 'Community'
     },
     {
         title: 'biiio-studio.com',
@@ -14,6 +15,7 @@ export const projects = [
         description:
             '<a href="https://biiio-studio.com" class="text-blue-500 underline">biiio-studio.com</a> is a company profile website for an architecture company in Banyuwangi,East Java. The website is created using HTML, CSS, javascript, and golang for back-end. The website also has a content management system created using flutter web.',
         image: ['biiiostudio/1.png', 'biiiostudio/2.png', 'biiiostudio/3.png', 'biiiostudio/4.png', 'biiiostudio/5.png', 'biiiostudio/6.png', 'biiiostudio/7.png', 'biiiostudio/biiiogif.gif']
+
     },
     {
         title: 'Hate Speech Video Detection System',

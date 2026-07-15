@@ -77,8 +77,14 @@
 				>
 				<a
 					href="#projects"
-					class="rounded-lg border border-accent px-6 py-3 text-accent transition-colors hover:border-section1 hover:text-section1"
+					class="rounded-lg bg-accent px-6 py-3 text-main transition-colors hover:bg-section1 hover:text-main"
 					>View My Work</a
+				>
+				<a
+					href="/Christopher Kelvin Resume.pdf"
+					download="Christopher_Kelvin_Resume.pdf"
+					class="rounded-lg bg-accent px-6 py-3 text-main transition-colors hover:bg-section1 hover:text-main"
+					>View Resume</a
 				>
 			</div>
 		</div>
@@ -88,25 +94,23 @@
 		<div class="container mx-auto px-6">
 			<h2 class="mb-8 text-3xl font-bold text-main">About Me</h2>
 			<p class="text-justify text-lg text-main" style="text-indent: 30px;">
-				Fullstack Developer with 2+ years of experience in building apps. I’ve been creating apps
-				for various client, either its web or mobile application. I’ve used to building a fintech
-				application, but i also did websites for company profile, and creating apps for communities.
-				I have expertise in Android application development, website development, machine learning
-				implementation, and backend development. With strong programming skills and fluency in
-				speaking English, I am ready to adapt and take on new challenges to continue growing in the
-				IT industry. Experienced in teamwork through various projects, I am committed to providing
-				innovative solutions and contributing effectively in a professional environment.
+				Full-stack developer with 2+ years of experience building web, mobile, and backend
+				applications for clients across fintech, government, manufacturing, and communities. My work
+				spans Android and Flutter development, backend systems with Golang and Python, and applied
+				machine learning. Recent projects include a fintech remittance app, a multi-tenant
+				accounting platform, and a mobile app built for the Indonesian Navy. I'm fluent in English
+				and comfortable owning a project end-to-end — from architecture to deployment.
 			</p>
 		</div>
 	</section>
 
-	<section id="projects" class="container mx-auto px-6 py-20">
+	<!-- <section id="projects" class="container mx-auto px-6 py-20">
 		<h2 class="mb-8 text-3xl font-bold text-section2">My Projects</h2>
 		<div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-			{#each projects as project, i}
-				<!-- <button onclick={()=>selectedProject=projects[i]}> -->
+			{#each projects as project, i} -->
+	<!-- <button onclick={()=>selectedProject=projects[i]}> -->
 
-				<a
+	<!-- <a
 					href="#detailProject"
 					class="rounded-lg bg-section2 p-6 transition-all duration-300 hover:-translate-y-2 hover:transform hover:cursor-pointer"
 					on:click={() => (selectedProject = projects[i])}
@@ -120,12 +124,92 @@
 					<p class="text-justify text-lg text-main" style="text-indent: 30px;">
 						{@html project.description}
 					</p>
+				</a> -->
+	<!-- </button>	 -->
+	<!-- {/each}
+		</div> -->
+	<!-- <section id="detailProject" class="py-8">
+			<div class=" rounded-lg bg-section2 p-6">
+				<h2 class="mb-8 text-center text-3xl font-bold text-main">{selectedProject.title}</h2>
+				<p class="text-justify text-xl text-main" style="text-indent: 30px;">
+					{@html selectedProject.description}
+				</p>
+				<div class="my-8 text-start">
+					<h2 class="mb-4 text-xl font-bold text-main">Frameworks & Languages</h2>
+					<ul class="list-item text-lg text-main">
+						{#each selectedProject.language as lang}
+							<li>&bull; {lang}</li>
+						{/each}
+					</ul>
+				</div> -->
+	<!-- 
+				<div class="my-8 text-start">
+					<h2 class="mb-8 text-xl font-bold text-main">Documentations</h2>
+					<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+						{#each selectedProject.image as img, i} -->
+	<!-- <a href={`images/${img}`} class="chocolat-image"> -->
+	<!-- <img
+								src={`images/${img}`}
+								alt={`${selectedProject.title}+${i + 1}`}
+								class="mb-4 h-48 w-full rounded-lg object-contain transition-all duration-300 hover:-translate-y-2 hover:transform hover:cursor-pointer"
+								on:click={() => openModal(`images/${img}`)}
+							/> -->
+	<!-- </a> -->
+	<!-- {/each}
+					</div>
+				</div>
+			</div>
+		</section>
+	</section> -->
+
+	<section id="projects" class="container mx-auto px-6 py-20">
+		<h2 class="mb-8 text-3xl font-bold text-section2">My Projects</h2>
+		<div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+			{#each projects as project, i}
+				<a
+					href="#detailProject"
+					class="flex flex-col rounded-lg bg-section2 p-6 transition-all duration-300 hover:-translate-y-2 hover:transform hover:cursor-pointer"
+					on:click={() => (selectedProject = projects[i])}
+				>
+					<!-- {#if project.category}
+						<span
+							class="mb-3 inline-block w-fit rounded-full bg-main/10 px-3 py-1 text-xs font-semibold text-main"
+						>
+							{project.category}
+						</span>
+					{/if} -->
+
+					<img
+						src={`images/${project.thumbnail}`}
+						alt="Project {i + 1}"
+						class="mb-4 h-48 w-full rounded-lg object-scale-down"
+					/>
+
+					<h3 class="mb-2 text-xl font-bold text-main">{project.title}</h3>
+
+					<p class="mb-4 line-clamp-3 text-base text-main/80">
+						{@html project.description}
+					</p>
+
+					{#if project.language}
+						<div class="mb-2 mt-auto flex flex-wrap gap-2">
+							{#each project.language as lang}
+								<span class="rounded border border-main/30 px-2 py-0.5 text-xs text-main/70">
+									{lang}
+								</span>
+							{/each}
+						</div>
+					{/if}
+
+					<span class="mt-2 text-sm font-semibold text-main underline underline-offset-4">
+						View details →
+					</span>
 				</a>
-				<!-- </button>	 -->
 			{/each}
 		</div>
+
 		<section id="detailProject" class="py-8">
-			<div class=" rounded-lg bg-section2 p-6">
+			<div class="rounded-lg bg-section2 p-6">
 				<h2 class="mb-8 text-center text-3xl font-bold text-main">{selectedProject.title}</h2>
 				<p class="text-justify text-xl text-main" style="text-indent: 30px;">
 					{@html selectedProject.description}
@@ -143,21 +227,18 @@
 					<h2 class="mb-8 text-xl font-bold text-main">Documentations</h2>
 					<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
 						{#each selectedProject.image as img, i}
-							<!-- <a href={`images/${img}`} class="chocolat-image"> -->
 							<img
 								src={`images/${img}`}
 								alt={`${selectedProject.title}+${i + 1}`}
 								class="mb-4 h-48 w-full rounded-lg object-contain transition-all duration-300 hover:-translate-y-2 hover:transform hover:cursor-pointer"
 								on:click={() => openModal(`images/${img}`)}
 							/>
-							<!-- </a> -->
 						{/each}
 					</div>
 				</div>
 			</div>
 		</section>
 	</section>
-
 	<section id="skills" class="bg-section1 py-20">
 		<div class="container mx-auto px-6">
 			<h2 class="mb-8 text-3xl font-bold text-main">My Skills</h2>
