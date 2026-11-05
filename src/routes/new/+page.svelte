@@ -45,17 +45,31 @@
 		{ name: '.NET / C#', color: '#512BD4', symbol: 'C#' }
 	];
 
-	const skillBars = [
-		{ name: 'Flutter & Dart', percentage: 95, icon: 'mobile' },
-		{ name: 'Golang', percentage: 90, icon: 'server' },
-		{ name: 'Svelte & SvelteKit', percentage: 90, icon: 'globe' },
-		{ name: 'Python (FastAPI & ML)', percentage: 85, icon: 'terminal' },
-		{ name: 'TypeScript / JavaScript', percentage: 90, icon: 'code' },
-		{ name: '.NET & C#', percentage: 80, icon: 'cpu' },
-		{ name: 'PostgreSQL & Databases', percentage: 85, icon: 'database' },
-		{ name: 'Tailwind CSS & Frontend', percentage: 95, icon: 'palette' },
-		{ name: 'Git & Deployment', percentage: 85, icon: 'git' }
+	type Mastery = 'High' | 'Medium' | 'Low';
+	type SkillIcon = 'mobile' | 'globe' | 'terminal' | 'database' | 'code';
+
+	interface Skill {
+		name: string;
+		mastery: Mastery;
+		icon: SkillIcon;
+	}
+
+	const skills: Skill[] = [
+		{ name: 'Flutter & Dart', mastery: 'High', icon: 'mobile' },
+		{ name: 'Svelte & SvelteKit', mastery: 'High', icon: 'globe' },
+		{ name: 'Python (FastAPI & ML)', mastery: 'Medium', icon: 'terminal' },
+		{ name: 'TypeScript / JavaScript', mastery: 'High', icon: 'code' },
+		{ name: '.NET & C#', mastery: 'Low', icon: 'code' },
+		{ name: 'PostgreSQL & Databases', mastery: 'Medium', icon: 'database' },
+		{ name: 'Tailwind CSS & Frontend', mastery: 'High', icon: 'code' },
+		{ name: 'Git & Deployment', mastery: 'Medium', icon: 'code' }
 	];
+
+	const masteryBadgeClass: Record<Mastery, string> = {
+		High: 'border-main/40 bg-main text-accent',
+		Medium: 'border-main/30 bg-section1 text-main',
+		Low: 'border-main/20 bg-accent/60 text-main/80'
+	};
 
 	const stats = [
 		{ value: '2+', label: 'Years Experience', icon: 'calendar' },
@@ -68,44 +82,47 @@
 <svelte:window onkeydown={handleKeydown} />
 
 <div
-	class="min-h-screen bg-[#070913] font-['Plus_Jakarta_Sans',sans-serif] text-slate-100 antialiased selection:bg-indigo-500 selection:text-white"
+	class="min-h-screen bg-main font-['Plus_Jakarta_Sans',sans-serif] text-accent antialiased selection:bg-section2 selection:text-main"
 >
-	<!-- Ambient Background Glows -->
 	<div class="pointer-events-none fixed inset-0 overflow-hidden">
 		<div
-			class="absolute -left-40 top-20 h-96 w-96 rounded-full bg-indigo-600/15 blur-[120px]"
+			class="absolute -left-40 top-20 h-96 w-96 rounded-full bg-section1/15 blur-[120px]"
 		></div>
 		<div
-			class="absolute right-0 top-60 h-[500px] w-[500px] rounded-full bg-violet-600/15 blur-[140px]"
+			class="absolute right-0 top-60 h-[500px] w-[500px] rounded-full bg-section2/15 blur-[140px]"
 		></div>
 		<div
-			class="absolute bottom-40 left-1/3 h-80 w-80 rounded-full bg-purple-600/10 blur-[130px]"
+			class="absolute bottom-40 left-1/3 h-80 w-80 rounded-full bg-accent/10 blur-[130px]"
 		></div>
 	</div>
 
-	<!-- Navigation Bar -->
-	<header class="sticky top-0 z-40 w-full border-b border-white/5 bg-[#070913]/80 backdrop-blur-xl">
+	<header class="sticky top-0 z-40 w-full border-b border-section2/15 bg-main/90 backdrop-blur-xl">
 		<nav class="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
-			<div class="hidden items-center gap-8 md:flex">
+			<div class="hidden items-center gap-4 md:flex">
 				<a
 					href="#home"
-					class="text-sm font-medium text-slate-300 transition-colors hover:text-white">Home</a
+					class="rounded-lg px-4 py-2 text-sm font-bold text-section2 transition-colors hover:bg-section2 hover:text-main"
+					>Home</a
 				>
 				<a
 					href="#about"
-					class="text-sm font-medium text-slate-300 transition-colors hover:text-white">About</a
+					class="rounded-lg px-4 py-2 text-sm font-bold text-section2 transition-colors hover:bg-section2 hover:text-main"
+					>About</a
 				>
 				<a
 					href="#skills"
-					class="text-sm font-medium text-slate-300 transition-colors hover:text-white">Skills</a
+					class="rounded-lg px-4 py-2 text-sm font-bold text-section2 transition-colors hover:bg-section2 hover:text-main"
+					>Skills</a
 				>
 				<a
 					href="#projects"
-					class="text-sm font-medium text-slate-300 transition-colors hover:text-white">Projects</a
+					class="rounded-lg px-4 py-2 text-sm font-bold text-section2 transition-colors hover:bg-section2 hover:text-main"
+					>Projects</a
 				>
 				<a
 					href="#contact"
-					class="text-sm font-medium text-slate-300 transition-colors hover:text-white">Contact</a
+					class="rounded-lg px-4 py-2 text-sm font-bold text-section2 transition-colors hover:bg-section2 hover:text-main"
+					>Contact</a
 				>
 			</div>
 
@@ -113,7 +130,7 @@
 				href="https://wa.me/6281232323685"
 				target="_blank"
 				rel="noreferrer"
-				class="inline-flex items-center gap-2 rounded-lg bg-indigo-600 px-5 py-2 text-sm font-semibold text-white shadow-lg shadow-indigo-600/25 transition-all hover:bg-indigo-500 hover:shadow-indigo-500/35 active:scale-95"
+				class="inline-flex items-center gap-2 rounded-lg bg-accent px-5 py-2 text-sm font-semibold text-main shadow-lg shadow-accent/20 transition-all hover:bg-section1 hover:text-main active:scale-95"
 			>
 				<span>Hire Me</span>
 				<svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -129,28 +146,27 @@
 	</header>
 
 	<main class="relative z-10 mx-auto max-w-7xl px-6">
-		<!-- Hero Section -->
 		<section id="home" class="grid items-center gap-12 py-16 lg:grid-cols-12 lg:py-24">
 			<div class="flex flex-col items-start lg:col-span-7">
 				<div
-					class="mb-5 inline-flex items-center gap-2 rounded-full border border-indigo-500/20 bg-indigo-500/10 px-3.5 py-1 text-xs font-semibold uppercase tracking-wider text-indigo-400"
+					class="mb-5 inline-flex items-center gap-2 rounded-full border border-section2/25 bg-section1/15 px-3.5 py-1 text-xs font-semibold uppercase tracking-wider text-section2"
 				>
-					<span class="h-1.5 w-1.5 animate-pulse rounded-full bg-indigo-400"></span>
+					<span class="h-1.5 w-1.5 animate-pulse rounded-full bg-section2"></span>
 					Full-Stack Developer
 				</div>
 
-				<h1 class="text-4xl font-extrabold tracking-tight text-white sm:text-6xl lg:text-7xl">
+				<h1 class="text-4xl font-extrabold tracking-tight text-section2 sm:text-6xl lg:text-7xl">
 					Hi, I'm <span
-						class="bg-gradient-to-r from-indigo-400 via-purple-300 to-indigo-200 bg-clip-text text-transparent"
+						class="bg-gradient-to-r from-accent via-section2 to-section1 bg-clip-text text-transparent"
 						>Kelvin</span
 					>
 				</h1>
 
-				<h2 class="mt-2 text-3xl font-extrabold tracking-tight text-slate-200 sm:text-5xl">
+				<h2 class="mt-2 text-3xl font-extrabold tracking-tight text-accent sm:text-5xl">
 					I build things for the web & mobile.
 				</h2>
 
-				<p class="mt-6 max-w-2xl text-base leading-relaxed text-slate-400 sm:text-lg">
+				<p class="mt-6 max-w-2xl text-base leading-relaxed text-section2/90 sm:text-lg">
 					Passionate developer with 2+ years of experience engineering mobile apps with Flutter,
 					responsive frontends with Svelte, and high-performance backend systems with Golang &
 					Python.
@@ -159,7 +175,7 @@
 				<div class="mt-8 flex flex-wrap items-center gap-4">
 					<a
 						href="#projects"
-						class="inline-flex items-center gap-2 rounded-lg bg-indigo-600 px-6 py-3.5 text-sm font-semibold text-white shadow-xl shadow-indigo-600/30 transition-all hover:bg-indigo-500 hover:shadow-indigo-500/40 active:scale-95"
+						class="inline-flex items-center gap-2 rounded-lg bg-accent px-6 py-3.5 text-sm font-semibold text-main shadow-xl shadow-accent/20 transition-all hover:bg-section1 hover:text-main active:scale-95"
 					>
 						<span>View My Work</span>
 						<svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -175,11 +191,11 @@
 					<a
 						href="/Christopher Kelvin Resume.pdf"
 						download="Christopher_Kelvin_Resume.pdf"
-						class="inline-flex items-center gap-2 rounded-lg border border-white/10 bg-white/5 px-6 py-3.5 text-sm font-semibold text-slate-200 backdrop-blur transition-all hover:border-white/20 hover:bg-white/10 active:scale-95"
+						class="inline-flex items-center gap-2 rounded-lg border border-section2/30 bg-section2 px-6 py-3.5 text-sm font-semibold text-main transition-all hover:bg-section1 hover:text-main active:scale-95"
 					>
 						<span>Download CV</span>
 						<svg
-							class="h-4 w-4 text-slate-400"
+							class="h-4 w-4 text-main/80"
 							fill="none"
 							stroke="currentColor"
 							viewBox="0 0 24 24"
@@ -195,13 +211,13 @@
 				</div>
 
 				<div class="mt-14 w-full">
-					<p class="text-xs font-semibold uppercase tracking-wider text-slate-500">
+					<p class="text-xs font-semibold uppercase tracking-wider text-section1">
 						Technologies I Work With
 					</p>
 					<div class="mt-4 flex flex-wrap items-center gap-3">
 						{#each techIcons as tech}
 							<div
-								class="flex items-center gap-2 rounded-lg border border-white/5 bg-[#101426] px-3.5 py-2 text-xs font-medium text-slate-300 transition-colors hover:border-indigo-500/30 hover:text-white"
+								class="flex items-center gap-2 rounded-lg border border-section2/20 bg-section2 px-3.5 py-2 text-xs font-medium text-main transition-colors hover:bg-accent"
 							>
 								<span
 									class="flex h-5 w-5 items-center justify-center rounded font-mono text-[10px] font-bold text-white"
@@ -216,20 +232,17 @@
 				</div>
 			</div>
 
-			<!-- Hero Right: Avatar with Purple Glowing Orb and Code Snippet -->
 			<div class="relative flex items-center justify-center lg:col-span-5">
-				<!-- Purple Circular Backdrop Orb -->
 				<div
 					class="relative flex h-[380px] w-[380px] items-center justify-center sm:h-[440px] sm:w-[440px]"
 				>
 					<div
-						class="absolute inset-0 rounded-full bg-gradient-to-tr from-indigo-700 via-purple-600 to-violet-500 opacity-90 blur-[1px]"
+						class="absolute inset-0 rounded-full bg-gradient-to-tr from-accent via-section2 to-section1 opacity-90 blur-[1px]"
 					></div>
-					<div class="absolute inset-4 rounded-full bg-[#0a0d1e]/80 backdrop-blur-sm"></div>
+					<div class="absolute inset-4 rounded-full bg-main/90 backdrop-blur-sm"></div>
 
-					<!-- Developer Portrait -->
 					<div
-						class="relative z-10 h-72 w-72 overflow-hidden rounded-full border-4 border-indigo-500/40 shadow-2xl sm:h-80 sm:w-80"
+						class="relative z-10 h-72 w-72 overflow-hidden rounded-full border-4 border-section2/40 shadow-2xl sm:h-80 sm:w-80"
 					>
 						<img
 							src="/images/profile.jpg"
@@ -238,10 +251,9 @@
 						/>
 					</div>
 
-					<!-- Decorative Arrow SVG -->
 					<div class="pointer-events-none absolute -bottom-6 -left-6 z-20 hidden sm:block">
 						<svg
-							class="h-16 w-16 text-indigo-400/70"
+							class="h-16 w-16 text-section2/70"
 							viewBox="0 0 100 100"
 							fill="none"
 							stroke="currentColor"
@@ -261,30 +273,29 @@
 						</svg>
 					</div>
 
-					<!-- Floating Code Card -->
 					<div
-						class="absolute -right-4 top-4 z-20 hidden rounded-xl border border-white/10 bg-[#0e1329]/95 p-4 font-mono text-xs shadow-2xl backdrop-blur-md sm:block"
+						class="absolute -right-4 top-4 z-20 hidden rounded-xl border border-main/15 bg-accent/95 p-4 font-mono text-xs shadow-2xl backdrop-blur-md sm:block"
 					>
 						<div
-							class="mb-2.5 flex items-center justify-between border-b border-white/5 pb-2 text-[11px] text-slate-400"
+							class="mb-2.5 flex items-center justify-between border-b border-main/10 pb-2 text-[11px] text-main/70"
 						>
-							<span class="flex items-center gap-1.5 font-sans font-semibold text-slate-300">
-								<span class="text-indigo-400">&lt;/&gt;</span> developer.ts
+							<span class="flex items-center gap-1.5 font-sans font-semibold text-main">
+								<span class="text-section1">&lt;/&gt;</span> developer.ts
 							</span>
-							<span class="h-2 w-2 rounded-full bg-emerald-400 shadow-sm shadow-emerald-400/50"
+							<span class="h-2 w-2 rounded-full bg-main shadow-sm"
 							></span>
 						</div>
-						<div class="space-y-1 text-slate-300">
-							<div><span class="text-purple-400">const</span> developer = &#123;</div>
-							<div class="pl-4">name: <span class="text-emerald-300">"Kelvin"</span>,</div>
-							<div class="pl-4">role: <span class="text-emerald-300">"Full-Stack"</span>,</div>
+						<div class="space-y-1 text-main/90">
+							<div><span class="text-section1">const</span> developer = &#123;</div>
+							<div class="pl-4">name: <span class="text-main">"Kelvin"</span>,</div>
+							<div class="pl-4">role: <span class="text-main">"Full-Stack"</span>,</div>
 							<div class="pl-4">
-								skills: [<span class="text-amber-300">"Flutter"</span>,
-								<span class="text-amber-300">"Golang"</span>,
-								<span class="text-amber-300">"Svelte"</span>],
+								skills: [<span class="text-main/80">"Flutter"</span>,
+								<span class="text-main/80">"Golang"</span>,
+								<span class="text-main/80">"Svelte"</span>],
 							</div>
 							<div class="pl-4">
-								passion: <span class="text-emerald-300">"High-impact systems"</span>
+								passion: <span class="text-main">"High-impact systems"</span>
 							</div>
 							<div>&#125;;</div>
 						</div>
@@ -293,25 +304,24 @@
 			</div>
 		</section>
 
-		<!-- About Me Section -->
-		<section id="about" class="border-t border-white/5 py-20">
+		<section id="about" class="border-t border-section2/15 py-20">
 			<div class="grid gap-12 lg:grid-cols-12">
 				<div class="lg:col-span-5">
 					<div
-						class="mb-4 inline-flex items-center gap-2 rounded-full border border-indigo-500/20 bg-indigo-500/10 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-indigo-400"
+						class="mb-4 inline-flex items-center gap-2 rounded-full border border-section2/25 bg-section1/15 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-section2"
 					>
 						About Me
 					</div>
-					<h2 class="text-3xl font-extrabold tracking-tight text-white sm:text-4xl">
+					<h2 class="text-3xl font-extrabold tracking-tight text-section2 sm:text-4xl">
 						I'm passionate about creating digital solutions
 					</h2>
-					<p class="mt-5 text-base leading-relaxed text-slate-400">
+					<p class="mt-5 text-base leading-relaxed text-accent/90">
 						Full-stack developer with 2+ years of experience building web, mobile, and backend
 						applications for clients across fintech, government, manufacturing, and communities. My
 						work spans Android and Flutter development, backend systems with Golang and Python, and
 						applied machine learning.
 					</p>
-					<p class="mt-4 text-base leading-relaxed text-slate-400">
+					<p class="mt-4 text-base leading-relaxed text-accent/90">
 						Recent projects include a fintech remittance app, a multi-tenant accounting platform,
 						and a specialized dive management application built for the Indonesian Navy. Comfortable
 						owning projects end-to-end, from architectural design to deployment.
@@ -320,7 +330,7 @@
 					<div class="mt-8">
 						<a
 							href="#contact"
-							class="inline-flex items-center gap-2 rounded-lg border border-indigo-500/30 bg-indigo-500/10 px-5 py-2.5 text-sm font-semibold text-indigo-300 transition-colors hover:bg-indigo-500/20 hover:text-white"
+							class="inline-flex items-center gap-2 rounded-lg bg-accent px-5 py-2.5 text-sm font-semibold text-main transition-colors hover:bg-section1 hover:text-main"
 						>
 							<span>Learn More About Me</span>
 							<svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -335,14 +345,13 @@
 					</div>
 				</div>
 
-				<!-- Stats Bento Cards -->
 				<div class="grid grid-cols-2 gap-4 lg:col-span-7">
 					{#each stats as item}
 						<div
-							class="group flex flex-col justify-between rounded-2xl border border-white/5 bg-[#0e1329] p-6 transition-all hover:border-indigo-500/30 hover:bg-[#121936]"
+							class="group flex flex-col justify-between rounded-2xl border border-section2/15 bg-section2 p-6 transition-all duration-300 hover:-translate-y-1 hover:bg-accent"
 						>
 							<div
-								class="mb-6 flex h-12 w-12 items-center justify-center rounded-xl bg-indigo-600/20 text-indigo-400 ring-1 ring-indigo-500/30 transition-transform group-hover:scale-110"
+								class="mb-6 flex h-12 w-12 items-center justify-center rounded-xl bg-main/15 text-main ring-1 ring-main/25 transition-transform group-hover:scale-110"
 							>
 								{#if item.icon === 'calendar'}
 									<svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -383,10 +392,10 @@
 								{/if}
 							</div>
 							<div>
-								<div class="text-3xl font-extrabold tracking-tight text-white sm:text-4xl">
+								<div class="text-3xl font-extrabold tracking-tight text-main sm:text-4xl">
 									{item.value}
 								</div>
-								<div class="mt-1 text-sm font-medium text-slate-400">{item.label}</div>
+								<div class="mt-1 text-sm font-medium text-main/80">{item.label}</div>
 							</div>
 						</div>
 					{/each}
@@ -394,114 +403,100 @@
 			</div>
 		</section>
 
-		<!-- Skills Section -->
-		<section id="skills" class="border-t border-white/5 py-20">
+		<section id="skills" class="border-t border-section2/15 py-20">
 			<div class="text-center">
 				<div
-					class="mb-3 inline-flex items-center gap-2 rounded-full border border-indigo-500/20 bg-indigo-500/10 px-3.5 py-1 text-xs font-semibold uppercase tracking-wider text-indigo-400"
+					class="mb-3 inline-flex items-center gap-2 rounded-full border border-section2/25 bg-section1/15 px-3.5 py-1 text-xs font-semibold uppercase tracking-wider text-section2"
 				>
 					My Skills
 				</div>
-				<h2 class="text-3xl font-extrabold tracking-tight text-white sm:text-4xl">
+				<h2 class="text-3xl font-extrabold tracking-tight text-section2 sm:text-4xl">
 					Technologies I Master
 				</h2>
-				<p class="mx-auto mt-3 max-w-xl text-slate-400">
+				<p class="mx-auto mt-3 max-w-xl text-accent/85">
 					A comprehensive toolset developed over years of production application delivery.
 				</p>
 			</div>
 
 			<div class="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-				{#each skillBars as skill}
+				{#each skills as skill}
 					<div
-						class="rounded-xl border border-white/5 bg-[#0e1329] p-5 transition-all hover:border-indigo-500/30 hover:bg-[#121936]"
+						class="flex items-center justify-between rounded-xl border border-section2/15 bg-section2 p-5 transition-all duration-300 hover:-translate-y-1 hover:bg-accent"
 					>
-						<div class="flex items-center justify-between">
-							<div class="flex items-center gap-2.5">
-								<span
-									class="flex h-8 w-8 items-center justify-center rounded-lg bg-indigo-600/15 text-indigo-400 ring-1 ring-indigo-500/20"
-								>
-									{#if skill.icon === 'mobile'}
-										<svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-											><path
-												stroke-linecap="round"
-												stroke-linejoin="round"
-												stroke-width="2"
-												d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"
-											/></svg
-										>
-									{:else if skill.icon === 'server'}
-										<svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-											><path
-												stroke-linecap="round"
-												stroke-linejoin="round"
-												stroke-width="2"
-												d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01"
-											/></svg
-										>
-									{:else if skill.icon === 'globe'}
-										<svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-											><path
-												stroke-linecap="round"
-												stroke-linejoin="round"
-												stroke-width="2"
-												d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"
-											/></svg
-										>
-									{:else if skill.icon === 'terminal'}
-										<svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-											><path
-												stroke-linecap="round"
-												stroke-linejoin="round"
-												stroke-width="2"
-												d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
-											/></svg
-										>
-									{:else if skill.icon === 'database'}
-										<svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-											><path
-												stroke-linecap="round"
-												stroke-linejoin="round"
-												stroke-width="2"
-												d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4"
-											/></svg
-										>
-									{:else}
-										<svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-											><path
-												stroke-linecap="round"
-												stroke-linejoin="round"
-												stroke-width="2"
-												d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"
-											/></svg
-										>
-									{/if}
-								</span>
-								<span class="text-sm font-semibold text-slate-200">{skill.name}</span>
-							</div>
-							<span class="font-mono text-xs font-bold text-indigo-400">{skill.percentage}%</span>
+						<div class="flex items-center gap-2.5">
+							<span
+								class="flex h-8 w-8 items-center justify-center rounded-lg bg-main/15 text-main ring-1 ring-main/25"
+							>
+								{#if skill.icon === 'mobile'}
+									<svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+										><path
+											stroke-linecap="round"
+											stroke-linejoin="round"
+											stroke-width="2"
+											d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"
+										/></svg
+									>
+								{:else if skill.icon === 'globe'}
+									<svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+										><path
+											stroke-linecap="round"
+											stroke-linejoin="round"
+											stroke-width="2"
+											d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"
+										/></svg
+									>
+								{:else if skill.icon === 'terminal'}
+									<svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+										><path
+											stroke-linecap="round"
+											stroke-linejoin="round"
+											stroke-width="2"
+											d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+										/></svg
+									>
+								{:else if skill.icon === 'database'}
+									<svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+										><path
+											stroke-linecap="round"
+											stroke-linejoin="round"
+											stroke-width="2"
+											d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4"
+										/></svg
+									>
+								{:else}
+									<svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+										><path
+											stroke-linecap="round"
+											stroke-linejoin="round"
+											stroke-width="2"
+											d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"
+										/></svg
+									>
+								{/if}
+							</span>
+							<span class="text-sm font-semibold text-main">{skill.name}</span>
 						</div>
-
-						<div class="mt-3.5 h-2 w-full overflow-hidden rounded-full bg-slate-800/80">
-							<div
-								class="h-full rounded-full bg-gradient-to-r from-indigo-500 to-purple-500 shadow-sm shadow-indigo-500/50"
-								style="width: {skill.percentage}%"
-							></div>
-						</div>
+						<span
+							class="rounded-full border px-2.5 py-0.5 font-mono text-xs font-semibold {masteryBadgeClass[
+								skill.mastery
+							]}"
+						>
+							{skill.mastery}
+						</span>
 					</div>
 				{/each}
 			</div>
 		</section>
 
-		<!-- Featured Projects Section -->
-		<section id="projects" class="border-t border-white/5 py-20">
+		<section id="projects" class="border-t border-section2/15 py-20">
 			<div class="flex flex-col items-center justify-between gap-4 md:flex-row">
 				<div>
 					<div
-						class="mb-3 inline-flex items-center gap-2 rounded-full border border-indigo-500/20 bg-indigo-500/10 px-3.5 py-1 text-xs font-semibold uppercase tracking-wider text-indigo-400"
+						class="mb-3 inline-flex items-center gap-2 rounded-full border border-section2/25 bg-section1/15 px-3.5 py-1 text-xs font-semibold uppercase tracking-wider text-section2"
 					>
 						Featured Projects
 					</div>
-					<h2 class="text-3xl font-extrabold tracking-tight text-white sm:text-4xl">
+					<h2 class="text-3xl font-extrabold tracking-tight text-section2 sm:text-4xl">
 						Some of My Recent Work
 					</h2>
 				</div>
@@ -513,37 +508,34 @@
 							aria-label="Select project {idx + 1}"
 							onclick={() => (activeProjectIndex = idx)}
 							class="h-2 rounded-full transition-all {activeProjectIndex === idx
-								? 'w-8 bg-indigo-500'
-								: 'w-2 bg-slate-700 hover:bg-slate-600'}"
+								? 'w-8 bg-section2'
+								: 'w-2 bg-section1/40 hover:bg-section1'}"
 						></button>
 					{/each}
 				</div>
 			</div>
 
-			<!-- Project Grid -->
 			<div class="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
 				{#each projectList as project, i}
 					<div
-						class="group flex flex-col justify-between overflow-hidden rounded-2xl border border-white/5 bg-[#0e1329] p-5 transition-all duration-300 hover:-translate-y-1.5 hover:border-indigo-500/40 hover:shadow-2xl hover:shadow-indigo-500/10"
+						class="group flex flex-col justify-between overflow-hidden rounded-2xl border border-section2/15 bg-section2 p-5 transition-all duration-300 hover:-translate-y-1.5 hover:border-accent hover:shadow-2xl hover:shadow-accent/15"
 					>
 						<div>
-							<!-- Header with index -->
 							<div class="mb-4 flex items-center justify-between">
-								<span class="font-mono text-xs font-semibold text-slate-500">
+								<span class="font-mono text-xs font-semibold text-main/60">
 									{String(i + 1).padStart(2, '0')}
 								</span>
 								{#if project.category}
 									<span
-										class="rounded-full bg-indigo-500/10 px-2.5 py-0.5 text-[11px] font-medium text-indigo-400"
+										class="rounded-full bg-main/15 px-2.5 py-0.5 text-[11px] font-medium text-main"
 									>
 										{project.category}
 									</span>
 								{/if}
 							</div>
 
-							<!-- Image Thumbnail -->
 							<div
-								class="relative mb-5 aspect-[16/10] w-full overflow-hidden rounded-xl bg-slate-900/80"
+								class="relative mb-5 aspect-[16/10] w-full overflow-hidden rounded-xl bg-accent/40"
 							>
 								<img
 									src={`/images/${project.thumbnail}`}
@@ -551,30 +543,27 @@
 									class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
 								/>
 								<div
-									class="absolute inset-0 bg-gradient-to-t from-[#0e1329] via-transparent to-transparent opacity-60"
+									class="absolute inset-0 bg-gradient-to-t from-section2 via-transparent to-transparent opacity-60"
 								></div>
 							</div>
 
-							<!-- Project Title -->
 							<h3
-								class="text-lg font-bold text-white transition-colors group-hover:text-indigo-300"
+								class="text-lg font-bold text-main transition-colors group-hover:text-main/90"
 							>
 								{project.title}
 							</h3>
 
-							<!-- Project Description -->
-							<p class="mt-2 line-clamp-3 text-sm leading-relaxed text-slate-400">
+							<p class="mt-2 line-clamp-3 text-sm leading-relaxed text-main/80">
 								{@html project.description}
 							</p>
 						</div>
 
-						<div class="mt-6 border-t border-white/5 pt-4">
-							<!-- Tech tags -->
+						<div class="mt-6 border-t border-main/15 pt-4">
 							{#if project.language}
 								<div class="mb-4 flex flex-wrap gap-1.5">
 									{#each project.language as lang}
 										<span
-											class="rounded-md border border-white/5 bg-white/5 px-2 py-0.5 text-[11px] font-medium text-slate-300"
+											class="rounded border border-main/30 px-2 py-0.5 text-xs text-main/70"
 										>
 											{lang}
 										</span>
@@ -585,7 +574,7 @@
 							<button
 								type="button"
 								onclick={() => openModal(`/images/${project.thumbnail}`, project)}
-								class="inline-flex w-full items-center justify-between text-xs font-semibold text-indigo-400 transition-colors hover:text-indigo-300"
+								class="inline-flex w-full items-center justify-between text-xs font-semibold text-main underline underline-offset-4 transition-colors hover:text-main/80"
 							>
 								<span>View Project Details</span>
 								<svg
@@ -608,19 +597,17 @@
 			</div>
 		</section>
 
-		<!-- Bottom Call-To-Action & Social Bento -->
-		<section id="contact" class="border-t border-white/5 py-20">
+		<section id="contact" class="border-t border-section2/15 py-20">
 			<div class="grid gap-6 lg:grid-cols-7">
-				<!-- CTA Card -->
 				<div
-					class="flex flex-col justify-between rounded-2xl border border-white/5 bg-[#0e1329] p-8 lg:col-span-4"
+					class="flex flex-col justify-between rounded-2xl border border-section2/15 bg-section2 p-8 lg:col-span-4"
 				>
 					<div>
-						<div class="mb-3 text-xs font-semibold uppercase tracking-wider text-indigo-400">
+						<div class="mb-3 text-xs font-semibold uppercase tracking-wider text-main/75">
 							Let's Work Together
 						</div>
-						<h3 class="text-2xl font-bold text-white">Have a project in mind?</h3>
-						<p class="mt-3 text-sm leading-relaxed text-slate-400">
+						<h3 class="text-2xl font-bold text-main">Have a project in mind?</h3>
+						<p class="mt-3 text-sm leading-relaxed text-main/85">
 							I'm always open to discussing new projects, high-performance backends, or mobile app
 							opportunities. Let's create something exceptional!
 						</p>
@@ -631,7 +618,7 @@
 							href="https://wa.me/6281232323685"
 							target="_blank"
 							rel="noreferrer"
-							class="inline-flex items-center gap-2 rounded-lg bg-indigo-600 px-5 py-3 text-sm font-semibold text-white shadow-lg shadow-indigo-600/30 transition-all hover:bg-indigo-500 hover:shadow-indigo-500/40 active:scale-95"
+							class="inline-flex items-center gap-2 rounded-lg bg-accent px-5 py-3 text-sm font-semibold text-main shadow-lg shadow-accent/25 transition-all hover:bg-main hover:text-accent active:scale-95"
 						>
 							<span>Get In Touch</span>
 							<svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -646,22 +633,20 @@
 					</div>
 				</div>
 
-				<!-- Follow Me / Contact Channels -->
 				<div
-					class="flex flex-col justify-between rounded-2xl border border-white/5 bg-[#0e1329] p-8 lg:col-span-3"
+					class="flex flex-col justify-between rounded-2xl border border-section2/15 bg-section1 p-8 lg:col-span-3"
 				>
 					<div>
-						<div class="mb-4 text-xs font-semibold uppercase tracking-wider text-slate-400">
+						<div class="mb-4 text-xs font-semibold uppercase tracking-wider text-main/80">
 							Follow Me
 						</div>
 						<div class="flex items-center gap-3">
-							<!-- GitHub -->
 							<a
 								href="https://github.com/Cekepek"
 								target="_blank"
 								rel="noreferrer"
 								aria-label="GitHub profile"
-								class="flex h-10 w-10 items-center justify-center rounded-lg border border-white/10 bg-white/5 text-slate-300 transition-colors hover:border-indigo-500/40 hover:bg-indigo-600/20 hover:text-white"
+								class="flex h-10 w-10 items-center justify-center rounded-lg border border-main/20 bg-main/10 text-main transition-colors hover:border-main/40 hover:bg-section2"
 							>
 								<svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
 									<path
@@ -672,13 +657,12 @@
 								</svg>
 							</a>
 
-							<!-- LinkedIn -->
 							<a
 								href="https://www.linkedin.com/in/ckpk/"
 								target="_blank"
 								rel="noreferrer"
 								aria-label="LinkedIn profile"
-								class="flex h-10 w-10 items-center justify-center rounded-lg border border-white/10 bg-white/5 text-slate-300 transition-colors hover:border-indigo-500/40 hover:bg-indigo-600/20 hover:text-white"
+								class="flex h-10 w-10 items-center justify-center rounded-lg border border-main/20 bg-main/10 text-main transition-colors hover:border-main/40 hover:bg-section2"
 							>
 								<svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
 									<path
@@ -687,13 +671,12 @@
 								</svg>
 							</a>
 
-							<!-- Instagram -->
 							<a
 								href="https://www.instagram.com/ckpk7171/"
 								target="_blank"
 								rel="noreferrer"
 								aria-label="Instagram profile"
-								class="flex h-10 w-10 items-center justify-center rounded-lg border border-white/10 bg-white/5 text-slate-300 transition-colors hover:border-indigo-500/40 hover:bg-indigo-600/20 hover:text-white"
+								class="flex h-10 w-10 items-center justify-center rounded-lg border border-main/20 bg-main/10 text-main transition-colors hover:border-main/40 hover:bg-section2"
 							>
 								<svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
 									<path
@@ -707,10 +690,10 @@
 					<div class="mt-8 space-y-3">
 						<a
 							href="mailto:ckpk7171@gmail.com"
-							class="flex items-center gap-2.5 text-xs text-slate-300 transition-colors hover:text-indigo-400"
+							class="flex items-center gap-2.5 text-xs text-main transition-colors hover:text-main/80"
 						>
 							<svg
-								class="h-4 w-4 text-indigo-400"
+								class="h-4 w-4 text-main"
 								fill="none"
 								stroke="currentColor"
 								viewBox="0 0 24 24"
@@ -727,10 +710,10 @@
 
 						<a
 							href="https://wa.me/6281232323685"
-							class="flex items-center gap-2.5 text-xs text-slate-300 transition-colors hover:text-indigo-400"
+							class="flex items-center gap-2.5 text-xs text-main transition-colors hover:text-main/80"
 						>
 							<svg
-								class="h-4 w-4 text-indigo-400"
+								class="h-4 w-4 text-main"
 								fill="none"
 								stroke="currentColor"
 								viewBox="0 0 24 24"
@@ -750,27 +733,24 @@
 		</section>
 	</main>
 
-	<!-- Footer -->
-	<footer class="border-t border-white/5 bg-[#05060d] py-8 text-xs text-slate-500">
+	<footer class="border-t border-section2/15 bg-section1 py-8 text-xs text-main">
 		<div
 			class="mx-auto flex max-w-7xl flex-col items-center justify-between gap-4 px-6 sm:flex-row"
 		>
 			<p>&copy; 2026 Christopher Kelvin. All rights reserved.</p>
 			<p class="flex items-center gap-1">
-				Made with <span class="text-rose-500">❤</span> by Christopher Kelvin
+				Made with <span class="text-rose-300">❤</span> by Christopher Kelvin
 			</p>
 		</div>
 	</footer>
 </div>
 
-<!-- Modal for Project Details & Images -->
 {#if showModal}
 	<div
 		role="dialog"
 		aria-modal="true"
-		class="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-4 backdrop-blur-md"
+		class="fixed inset-0 z-50 flex items-center justify-center bg-black/65 p-4 backdrop-blur-md"
 	>
-		<!-- Backdrop click target -->
 		<button
 			type="button"
 			aria-label="Close modal backdrop"
@@ -779,16 +759,15 @@
 		></button>
 
 		<div
-			class="relative z-10 flex max-h-[90vh] w-full max-w-4xl flex-col overflow-hidden rounded-2xl border border-white/10 bg-[#0e1329] shadow-2xl"
+			class="relative z-10 flex max-h-[90vh] w-full max-w-4xl flex-col overflow-hidden rounded-2xl border border-main/20 bg-section2 shadow-2xl"
 		>
-			<!-- Modal Header -->
-			<div class="flex items-center justify-between border-b border-white/5 px-6 py-4">
+			<div class="flex items-center justify-between border-b border-main/15 px-6 py-4">
 				<div>
-					<h3 class="text-xl font-bold text-white">{selectedProject.title}</h3>
+					<h3 class="text-xl font-bold text-main">{selectedProject.title}</h3>
 					<div class="mt-1 flex flex-wrap gap-2">
 						{#each selectedProject.language as lang}
 							<span
-								class="rounded bg-indigo-500/10 px-2 py-0.5 text-xs font-medium text-indigo-400"
+								class="rounded border border-main/30 bg-main/10 px-2 py-0.5 text-xs font-medium text-main"
 							>
 								{lang}
 							</span>
@@ -799,7 +778,7 @@
 					type="button"
 					aria-label="Close modal"
 					onclick={closeModal}
-					class="flex h-8 w-8 items-center justify-center rounded-lg border border-white/10 bg-white/5 text-slate-400 transition-colors hover:bg-white/10 hover:text-white"
+					class="flex h-8 w-8 items-center justify-center rounded-lg border border-main/20 bg-main/10 text-main/80 transition-colors hover:bg-accent hover:text-main"
 				>
 					<svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 						<path
@@ -812,11 +791,9 @@
 				</button>
 			</div>
 
-			<!-- Modal Body -->
 			<div class="overflow-y-auto p-6">
-				<!-- Main Selected Image Preview -->
 				<div
-					class="mb-6 flex max-h-[50vh] w-full items-center justify-center overflow-hidden rounded-xl bg-slate-950 p-2"
+					class="mb-6 flex max-h-[50vh] w-full items-center justify-center overflow-hidden rounded-xl bg-accent/60 p-2"
 				>
 					<img
 						src={selectedImage}
@@ -826,18 +803,17 @@
 				</div>
 
 				<div class="mb-6">
-					<h4 class="mb-2 text-sm font-semibold uppercase tracking-wider text-slate-400">
+					<h4 class="mb-2 text-sm font-semibold uppercase tracking-wider text-main/75">
 						Overview
 					</h4>
-					<p class="text-sm leading-relaxed text-slate-300">
+					<p class="text-sm leading-relaxed text-main/90">
 						{@html selectedProject.description}
 					</p>
 				</div>
 
-				<!-- Gallery thumbnails -->
-				{#if selectedProject.image && selectedProject.image.length > 0}
+				{#if selectedProject.image.length > 0}
 					<div>
-						<h4 class="mb-3 text-sm font-semibold uppercase tracking-wider text-slate-400">
+						<h4 class="mb-3 text-sm font-semibold uppercase tracking-wider text-main/75">
 							Documentation & Screenshots ({selectedProject.image.length})
 						</h4>
 						<div class="grid grid-cols-3 gap-3 sm:grid-cols-4 md:grid-cols-6">
@@ -848,8 +824,8 @@
 									class="overflow-hidden rounded-lg border transition-all {selectedImage.endsWith(
 										img
 									)
-										? 'border-indigo-500 ring-2 ring-indigo-500/50'
-										: 'border-white/5 hover:border-indigo-500/30'}"
+										? 'border-main ring-2 ring-main/50'
+										: 'border-main/20 hover:border-main/50'}"
 								>
 									<img
 										src={`/images/${img}`}
